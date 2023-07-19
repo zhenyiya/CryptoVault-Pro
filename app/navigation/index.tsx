@@ -6,8 +6,8 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { Feather } from "@expo/vector-icons";
-import { ColorSchemeName, TouchableOpacity } from "react-native";
+import { Feather, FontAwesome } from "@expo/vector-icons";
+import { ColorSchemeName } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -17,14 +17,6 @@ import Profile from "../screens/Profile";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import Vector from "../assets/vectors";
-import { SHADOWS } from "../constants/Assets";
-import { COLOR_SCHEME } from "../constants/Colors";
-import Trade from "../screens/Trade";
-import TradingModalHeader from "../components/TradingModalHeader";
-import Send from "../screens/Send";
-import styles from "../styles";
-import ModalHeaderRight from "../components/ModalHeaderRight";
-import Receive from "../screens/Receive";
 
 export default function Navigation({
   colorScheme,
@@ -45,10 +37,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="Onboarding"
-      screenOptions={{ headerShown: false }}
-    >
+    // @ts-ignore
+    <Stack.Navigator initialRouteName="Onboarding">
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
@@ -59,28 +49,6 @@ const RootNavigator = () => {
         component={Onboarding}
         options={{ headerShown: false }}
       />
-
-      <Stack.Group
-        screenOptions={{
-          headerShown: true,
-          presentation: "modal",
-          header: () => <TradingModalHeader />,
-        }}
-      >
-        <Stack.Screen name="Trade" component={Trade} />
-      </Stack.Group>
-      <Stack.Group
-        screenOptions={{
-          headerShown: true,
-          presentation: "modal",
-          headerStyle: styles.headerStyle,
-          headerTitleStyle: { color: Colors.white },
-          headerRight: () => <ModalHeaderRight />,
-        }}
-      >
-        <Stack.Screen name="Send" component={Send} />
-        <Stack.Screen name="Receive" component={Receive} />
-      </Stack.Group>
     </Stack.Navigator>
   );
 };
@@ -91,10 +59,11 @@ const BottomTabNavigator = () => {
   const colorScheme = useColorScheme();
 
   return (
+    // @ts-ignore
     <BottomTab.Navigator
       initialRouteName="HomeTab"
       screenOptions={{
-        tabBarActiveTintColor: COLOR_SCHEME[colorScheme].tint,
+        tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
     >
       <BottomTab.Screen
@@ -110,36 +79,22 @@ const BottomTabNavigator = () => {
       <BottomTab.Screen
         name="TradeTab"
         component={Home}
-        options={({ navigation }) => ({
+        options={() => ({
           title: "Trade",
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarIcon: () => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Trade")}
+          tabBarIcon: ({ color }) => (
+            <Vector
+              name="exchange"
+              size={20}
+              color={color}
               style={{
-                top: -20,
-                height: 70,
-                width: 70,
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 50,
-                backgroundColor: Colors.primary,
-                ...SHADOWS.shadow8,
+                borderWidth: 2,
+                padding: 5,
+                borderColor: color,
+                borderRadius: 8,
               }}
-            >
-              <Vector
-                name="exchange"
-                size={20}
-                color={Colors.secondary}
-                style={{
-                  borderWidth: 2,
-                  padding: 5,
-                  borderColor: Colors.secondary,
-                  borderRadius: 8,
-                }}
-              />
-            </TouchableOpacity>
+            />
           ),
         })}
       />

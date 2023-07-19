@@ -1,22 +1,21 @@
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
 import AppStatusBar from "../components/AppStatusBar";
-import { FONTS, IMAGES, SIZES } from "../constants/Assets";
+import { Images } from "../constants/Assets";
 import { useNavigation } from "@react-navigation/native";
 import Vector from "../assets/vectors";
-import styles from "../styles";
 
 const Onboarding = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={[styles.container, { padding: SIZES.p20 }]}>
+    <SafeAreaView style={styles.container}>
       <AppStatusBar backgroundColor="#fff" />
       <View style={{ flex: 1 }}>
         <Image
-          source={IMAGES.Wallet}
+          source={Images.Wallet}
           style={{ width: "100%", height: "100%" }}
           resizeMode="contain"
         />
@@ -26,8 +25,8 @@ const Onboarding = () => {
           style={{
             color: "#fff",
             fontSize: 30,
+            fontWeight: "bold",
             lineHeight: 40,
-            fontFamily: FONTS.bold,
           }}
         >
           Secure your coins and NFTs with ease.
@@ -35,10 +34,9 @@ const Onboarding = () => {
         <Text
           style={{
             color: "#fff",
-            fontSize: 18,
+            fontSize: 15,
             lineHeight: 25,
             marginVertical: 20,
-            fontFamily: FONTS.regular,
           }}
         >
           Buy, Sell, Earn digital assets and easily secure your funds.
@@ -47,13 +45,7 @@ const Onboarding = () => {
 
       <TouchableOpacity onPress={() => navigation.navigate("Root")}>
         <View style={styles.startButton}>
-          <Text
-            style={{
-              color: Colors.primary,
-              fontFamily: FONTS.medium,
-              fontSize: SIZES.large,
-            }}
-          >
+          <Text style={{ color: Colors.primary.background }}>
             Let's get started
           </Text>
 
@@ -67,3 +59,32 @@ const Onboarding = () => {
 };
 
 export default Onboarding;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.primary.background,
+    color: Colors.primary.text,
+    flex: 1,
+    padding: 20,
+  },
+  startButton: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    backgroundColor: Colors.secondary.background,
+    borderRadius: 30,
+    width: "100%",
+    padding: 10,
+    paddingHorizontal: 25,
+  },
+  startIcon: {
+    height: 35,
+    width: 35,
+    borderRadius: 40,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Colors.tertiary.background,
+  },
+});

@@ -1,16 +1,14 @@
-import { View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import HeroBar from "../components/HeroBar";
-import HomeTabs from "../components/HomeTabs";
-import Layout from "../constants/Layout";
 
 const Home = () => {
   return (
-    <View style={{ height: Layout.window.height }}>
-      <HeroBar />
-      <HomeTabs />
+    <View>
+      <Text>Home</Text>
     </View>
   );
 };
 
 export default Home;
+
+const styles = StyleSheet.create({});

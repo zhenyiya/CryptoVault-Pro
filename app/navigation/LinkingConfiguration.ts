@@ -12,13 +12,11 @@ const linking: LinkingOptions<RootStackParamList> = {
           HomeTab: {
             screens: {
               Home: "home",
-              Send: "send",
             },
           },
           TradeTab: {
             screens: {
               Trade: "trade",
-              Exchange: "exchange",
             },
           },
           ProfileTab: {
@@ -29,7 +27,6 @@ const linking: LinkingOptions<RootStackParamList> = {
         },
       },
       Onboarding: "Onboarding",
-      Modal: "modal",
     },
   },
 };
