@@ -1,11 +1,10 @@
-import { FONTS, SHADOWS, SIZES } from "../constants/Assets";
 import { StyleSheet } from "react-native";
-import COLORS from "../constants/Colors";
+import Colors from "../constants/Colors";
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.primary,
-    color: COLORS.white,
+    backgroundColor: Colors.primary.background,
+    color: Colors.primary.text,
     flex: 1,
   },
   startButton: {
@@ -13,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: COLORS.secondary,
+    backgroundColor: Colors.secondary.background,
     borderRadius: 30,
     width: "100%",
     padding: 10,
@@ -26,62 +25,19 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: Colors.tertiary.background,
   },
   primaryColor: {
-    backgroundColor: COLORS.primary,
-    color: COLORS.white,
+    backgroundColor: Colors.primary.background,
+    color: Colors.primary.text,
   },
   secondaryColor: {
-    backgroundColor: COLORS.secondary,
-    color: COLORS.primary,
+    backgroundColor: Colors.secondary.background,
+    color: Colors.secondary.text,
   },
   tertiaryColor: {
-    backgroundColor: COLORS.tertiary,
-    color: COLORS.primary,
-  },
-  cardWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  leadingIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 70,
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: -SIZES.p20,
-    ...SHADOWS.elevation0,
-  },
-  cardMainWrapper: {
-    margin: SIZES.p20,
-    backgroundColor: COLORS.white,
-    borderRadius: SIZES.small,
-    borderWidth: 1,
-    borderColor: COLORS.gray10,
-  },
-  primaryButtonView: {
-    backgroundColor: COLORS.primary,
-    marginHorizontal: SIZES.p20,
-    padding: SIZES.p15,
-    borderRadius: SIZES.small,
-  },
-  primaryButtonText: {
-    textAlign: "center",
-    color: COLORS.white,
-    fontFamily: FONTS.semibold,
-    fontSize: SIZES.font,
-  },
-  headerStyle: {
-    backgroundColor: COLORS.primary,
-  },
-  selectorStyle: { borderColor: COLORS.gray10 },
-  dropdownContainerStyle: {
-    width: SIZES.full,
-    marginTop: 5,
-    borderColor: COLORS.gray10,
+    backgroundColor: Colors.tertiary.background,
+    color: Colors.tertiary.text,
   },
 });
 
