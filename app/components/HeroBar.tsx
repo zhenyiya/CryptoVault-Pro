@@ -1,54 +1,32 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
-import {
-  FONTS,
-  Opacity,
-  SHADOWS,
-  SIZES,
-  WALLET_TOP_TABS,
-} from "../constants/Assets";
+import { Opacity, Shadows, Sizes, WALLET_TOP_TABS } from "../constants/Assets";
 import styles from "../styles";
 import Vector from "../assets/vectors";
 import { USER_DATA } from "../constants/Dummies";
-import { convertTokenToDollars, truncate } from "../helpers";
-import Colors from "../constants/Colors";
-import TokenSelector from "./TokenSelector";
-import { useRecoilValue } from "recoil";
-import { CurrentTokenState } from "../atoms";
+import { truncate } from "../helpers";
 
 const HeroBar = () => {
   const [showAmount, setShowAmount] = useState(true);
-  const currentToken = useRecoilValue(CurrentTokenState);
-
-  const navigation = useNavigation();
 
   const onToggleAmount = () => {
     setShowAmount((state) => !state);
   };
 
   return (
-    <View>
+    <View style={{ flex: 1, paddingBottom: 130 }}>
       <View
         style={{
-          height: 320,
+          height: 300,
           ...styles.primaryColor,
-          paddingHorizontal: SIZES.p20,
-          paddingTop: SIZES.p6,
+          paddingHorizontal: Sizes.p20,
+          paddingTop: Sizes.p6,
         }}
       >
         <SafeAreaView>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              marginVertical: 10,
-              zIndex: 10,
-            }}
-          >
-            <TokenSelector />
-            <TouchableOpacity style={{ alignItems: "flex-end" }}>
+          <View style={{ alignItems: "flex-end" }}>
+            <TouchableOpacity>
               <View
                 style={{
                   height: 50,
@@ -72,14 +50,12 @@ const HeroBar = () => {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              marginTop: SIZES.p15,
+              marginTop: Sizes.p6,
             }}
           >
             <Text
               style={{
                 color: styles.primaryColor.color,
-                fontFamily: FONTS.regular,
-                fontSize: SIZES.medium,
               }}
             >
               {USER_DATA.username}
@@ -98,17 +74,13 @@ const HeroBar = () => {
                   color: styles.primaryColor.color,
                   fontSize: 20,
                   fontWeight: "bold",
-                  marginVertical: SIZES.p15,
+                  marginVertical: Sizes.p15,
                   flex: 1,
                   textAlign: "center",
-                  fontFamily: FONTS.monoBold,
                 }}
               >
                 {showAmount
-                  ? `US ${convertTokenToDollars(
-                      USER_DATA.amount,
-                      currentToken.name
-                    )}`
+                  ? `${USER_DATA.currency} ${USER_DATA.amount}`
                   : "******"}
               </Text>
 
@@ -130,27 +102,25 @@ const HeroBar = () => {
                 borderRadius: 100,
               }}
             >
-              <Text style={{ fontFamily: FONTS.regular }}>
-                {truncate(USER_DATA.address)}
-              </Text>
+              <Text>{truncate(USER_DATA.address)}</Text>
             </View>
           </View>
 
           <View
             style={{
-              bottom: -50,
-              height: 60,
+              bottom: -60,
+              height: 70,
               flexDirection: "row",
               justifyContent: "space-evenly",
               alignItems: "center",
               width: "100%",
               backgroundColor: "#fff",
-              borderRadius: SIZES.p6,
-              ...SHADOWS.shadow,
+              borderRadius: Sizes.p6,
+              ...Shadows.shadow,
             }}
           >
             {WALLET_TOP_TABS.map((tab, index) => (
-              <TouchableOpacity
+              <View
                 key={index}
                 style={{
                   height: "60%",
@@ -161,18 +131,9 @@ const HeroBar = () => {
                   borderColor: "rgba(196, 196, 196, 0.54)",
                   paddingLeft: index !== 0 ? 20 : 0,
                 }}
-                onPress={() => navigation.navigate(tab.route)}
               >
-                <Text
-                  style={{
-                    fontFamily: FONTS.medium,
-                    fontSize: SIZES.medium,
-                    color: Colors.primary,
-                  }}
-                >
-                  {tab.title}
-                </Text>
-              </TouchableOpacity>
+                <Text>{tab.title}</Text>
+              </View>
             ))}
           </View>
         </SafeAreaView>
