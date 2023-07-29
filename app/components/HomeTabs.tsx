@@ -2,12 +2,11 @@ import { View, Text } from "react-native";
 import React, { useState } from "react";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 
-import { SIZES } from "../constants/Assets";
+import { Sizes } from "../constants/Assets";
 import styles from "../styles";
 import Layout from "../constants/Layout";
 import WalletAssets from "./WalletTokens";
 import WalletTransactions from "./WalletTransactions";
-import Colors from "../constants/Colors";
 
 const ROUTES = [
   { key: "tokens", title: "Tokens" },
@@ -25,13 +24,13 @@ const HomeTabs = () => {
   return (
     <View
       style={{
-        flex: 1,
-        backgroundColor: Colors.white,
-        paddingHorizontal: SIZES.p20,
-        paddingVertical: SIZES.p30,
-        marginTop: SIZES.extraLarge,
-        borderTopLeftRadius: SIZES.p40,
-        borderTopRightRadius: SIZES.p40,
+        height: "100%",
+        backgroundColor: "#fff",
+        padding: Sizes.p20,
+        paddingVertical: Sizes.p20 + 10,
+        marginTop: 8,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
       }}
     >
       <TabView
@@ -43,14 +42,14 @@ const HomeTabs = () => {
           <TabBar
             {...props}
             style={{
-              backgroundColor: Colors.gray,
-              borderRadius: SIZES.base,
-              marginBottom: SIZES.p15,
+              backgroundColor: "#f6f6f6",
+              borderRadius: Sizes.p6 + 2,
+              marginBottom: Sizes.p15,
             }}
             indicatorStyle={{
               backgroundColor: styles.primaryColor.color,
               height: "100%",
-              borderRadius: SIZES.base,
+              borderRadius: 8,
             }}
             indicatorContainerStyle={{
               position: "absolute",
