@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Pressable,
-  ViewStyle,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { SIZES, FONTS } from "../constants/Assets";
 import COLORS from "../constants/Colors";
@@ -13,19 +6,14 @@ import TokenSelector from "../components/TokenSelector";
 import Vector from "../assets/vectors";
 import { convertTokenToDollars } from "../helpers";
 import { TChains } from "types";
-import { useRecoilValue } from "recoil";
-import { CurrentTokenState } from "../atoms";
-import styles from "../styles";
-import TouchableText from "../components/TouchableText";
 
-const SwapItem = ({ defaultChain }: { defaultChain?: TChains }) => {
+const SwapItem = () => {
   const [value, setValue] = useState("");
   const [selectedToken, setSelectedToken] = useState<TChains | null>(null);
 
   return (
     <View
       style={{
-        zIndex: 3000,
         paddingVertical: SIZES.extraLarge,
       }}
     >
@@ -34,6 +22,7 @@ const SwapItem = ({ defaultChain }: { defaultChain?: TChains }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          zIndex: 3,
           marginVertical: 5,
           width: SIZES.full,
           paddingHorizontal: SIZES.p20,
@@ -53,17 +42,10 @@ const SwapItem = ({ defaultChain }: { defaultChain?: TChains }) => {
           />
         </View>
         <TokenSelector
-          defaultValue={defaultChain}
           style={{
             width: SIZES.half,
             borderColor: COLORS.gray10,
             borderRadius: 100,
-          }}
-          dropDownContainerStyle={{
-            width: "50%",
-            borderWidth: 0,
-            marginTop: 10,
-            borderColor: COLORS.gray10,
           }}
           onChange={setSelectedToken}
         />
@@ -90,23 +72,29 @@ const SwapItem = ({ defaultChain }: { defaultChain?: TChains }) => {
   );
 };
 
-const Swap = ({ style }: { style?: ViewStyle }) => {
-  const currentToken = useRecoilValue(CurrentTokenState);
-
+const Swap = () => {
   return (
-    <View style={style}>
-      <View style={styles.cardMainWrapper}>
+    <View>
+      <View
+        style={{
+          margin: SIZES.p20,
+          backgroundColor: COLORS.white,
+          borderRadius: SIZES.small,
+          borderWidth: 1,
+          borderColor: COLORS.gray10,
+        }}
+      >
         <SwapItem />
 
         <View style={{ marginVertical: SIZES.large, position: "relative" }}>
           <View
             style={{
-              height: 0.75,
+              height: 1,
               width: SIZES.full,
               backgroundColor: COLORS.gray10,
             }}
           />
-          <Pressable
+          <TouchableOpacity
             style={{
               height: 40,
               width: 40,
@@ -127,23 +115,31 @@ const Swap = ({ style }: { style?: ViewStyle }) => {
               color={COLORS.black50}
               style={{ transform: [{ rotate: "90deg" }] }}
             />
-          </Pressable>
+          </TouchableOpacity>
         </View>
 
-        <SwapItem
-          defaultChain={
-            currentToken.defaultSwapChain
-              ? currentToken.defaultSwapChain
-              : undefined
-          }
-        />
+        <SwapItem />
       </View>
 
-      <TouchableText
-        text="Swap"
-        style={styles.primaryButtonView}
-        textStyle={styles.primaryButtonText}
-      />
+      <TouchableOpacity
+        style={{
+          backgroundColor: COLORS.primary,
+          marginHorizontal: SIZES.p20,
+          padding: SIZES.p15,
+          borderRadius: SIZES.small,
+        }}
+      >
+        <Text
+          style={{
+            textAlign: "center",
+            color: COLORS.white,
+            fontFamily: FONTS.semibold,
+            fontSize: SIZES.font,
+          }}
+        >
+          Swap
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
