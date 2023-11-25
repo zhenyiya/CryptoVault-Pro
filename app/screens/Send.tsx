@@ -16,8 +16,12 @@ const Send = () => {
     <View>
       <View style={[styles.cardMainWrapper, { padding: SIZES.p20 }]}>
         <TokenSelector
-          style={styles.selectorStyle}
-          dropDownContainerStyle={styles.dropdownContainerStyle}
+          style={{ borderColor: COLORS.gray10 }}
+          dropDownContainerStyle={{
+            width: SIZES.full,
+            marginTop: 5,
+            borderColor: COLORS.gray10,
+          }}
         />
 
         <View
@@ -51,7 +55,6 @@ const Send = () => {
         >
           <TextInput
             placeholder="0.00"
-            autoFocus
             showSoftInputOnFocus
             style={{ fontFamily: FONTS.monoBold, fontSize: SIZES.extraLarge }}
           />
@@ -62,7 +65,6 @@ const Send = () => {
             color: COLORS.black50,
             fontFamily: FONTS.regular,
             marginBottom: SIZES.base,
-            textTransform: "uppercase",
           }}
         >
           Send to
