@@ -8,7 +8,6 @@ import COLORS from "../constants/Colors";
 import TokenSelector from "../components/TokenSelector";
 import { CurrentTokenState } from "../atoms";
 import Vector from "../assets/vectors";
-import styles from "../styles";
 
 const Receive = () => {
   const currentToken = useRecoilValue(CurrentTokenState);
@@ -28,7 +27,6 @@ const Receive = () => {
       >
         <TokenSelector
           style={{ borderColor: COLORS.gray10, marginBottom: SIZES.extraLarge }}
-          dropDownContainerStyle={styles.dropdownContainerStyle}
         />
 
         <View style={{ marginVertical: SIZES.large }}>
@@ -57,23 +55,18 @@ const Receive = () => {
           marginVertical: SIZES.extraLarge,
         }}
       >
-        <View style={innerStyles.iconWrapper}>
-          <Vector as="feather" name="copy" style={innerStyles.icon} size={24} />
+        <View style={styles.iconWrapper}>
+          <Vector as="feather" name="copy" style={styles.icon} size={24} />
         </View>
-        <View style={innerStyles.iconWrapper}>
-          <Vector
-            as="feather"
-            name="share"
-            style={innerStyles.icon}
-            size={24}
-          />
+        <View style={styles.iconWrapper}>
+          <Vector as="feather" name="share" style={styles.icon} size={24} />
         </View>
       </View>
     </View>
   );
 };
 
-const innerStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   iconWrapper: {
     height: 50,
     width: 50,
