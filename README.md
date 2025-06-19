@@ -1,6 +1,6 @@
 # CryptoVault Pro
 
-Crypto Wallet Application.
+CryptoVault Pro is a digital asset management platform that empowers users to securely store, trade, and monitor their digital assets. It provides a seamless, secure, and intuitive interface for managing your crypto portfolio.
 
 ## Features
 
